@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "MyEyes",
+    "slug": "myeyes",
+    "version": "1.0.0",
+    "scheme": "myeyes",
+    "orientation": "portrait",
+    
+    "userInterfaceStyle": "automatic",
+    
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to detect objects for accessibility.",
+        "NSMicrophoneUsageDescription": "This app uses the microphone for voice commands.",
+        "NSSpeechRecognitionUsageDescription": "This app uses speech recognition for hands-free control."
+      }
+    },
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "VIBRATE"
+      ],
+      "package": "com.myeyes.app",
+      
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableProguardInReleaseBuilds": true,
+            "extraMavenRepos": []
+          },
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "00000000-0000-0000-0000-000000000000"
+      }
+    }
+  }
+}
+
