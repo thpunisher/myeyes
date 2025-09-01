@@ -1,9 +1,8 @@
 import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-react-native';
-import * as FileSystem from 'expo-file-system';
 import * as Speech from 'expo-speech';
-import { decode as base64Decode } from 'base64-js';
+import { toByteArray } from 'base64-js';
 import { Camera } from 'expo-camera';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import type { DetectionBox } from '@/App';
@@ -90,13 +89,10 @@ export function useDetection({ cameraRef, previewSize }: UseDetectionArgs) {
       if (!picture?.base64 || !picture.width || !picture.height) return;
       const width = picture.width;
       const height = picture.height;
-      const bytes = base64Decode(picture.base64);
-      const u8 = new Uint8Array(bytes);
+      const u8 = toByteArray(picture.base64);
       const imgTensor = tf.tidy(() => {
-        const decoded = tf.node ? (tf as any).node.decodeImage(u8, 3) : (tf as any).reactNative?.decodeJpeg?.(u8, 3);
-        const casted = decoded.toFloat();
-        const expanded = casted.expandDims(0);
-        return expanded;
+        const decoded = (tf as any).reactNative?.decodeJpeg?.(u8, 3);
+        return decoded;
       });
       const predictions = await modelRef.current.detect(imgTensor as any, undefined, 0.3);
       const processed = processPredictions(predictions, width, height);
