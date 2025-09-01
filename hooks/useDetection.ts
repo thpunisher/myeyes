@@ -5,7 +5,7 @@ import * as Speech from 'expo-speech';
 import { toByteArray } from 'base64-js';
 import { Camera } from 'expo-camera';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
-import type { DetectionBox } from '@/App';
+import type { DetectionBox } from '@/types/detection';
 import { saveDetections } from '@/utils/storage';
 import Voice, { SpeechResultsEvent, SpeechStartEvent, SpeechEndEvent } from '@react-native-voice/voice';
 
@@ -65,7 +65,7 @@ export function useDetection({ cameraRef, previewSize }: UseDetectionArgs) {
 
   const processPredictions = useCallback(
     (preds: cocoSsd.DetectedObject[], imgWidth: number, imgHeight: number): DetectionBox[] => {
-      const results: DetectionBox[] = preds.map((p, idx) => {
+      const results: DetectionBox[] = preds.map((p: cocoSsd.DetectedObject, idx: number) => {
         const [x, y, w, h] = p.bbox; // pixels
         const bbox: [number, number, number, number] = [x / imgWidth, y / imgHeight, w / imgWidth, h / imgHeight];
         return {
@@ -98,7 +98,7 @@ export function useDetection({ cameraRef, previewSize }: UseDetectionArgs) {
       const processed = processPredictions(predictions, width, height);
       setBoxes(processed);
 
-      const signature = processed.map((p) => p.class).join(',');
+      const signature = processed.map((p: DetectionBox) => p.class).join(',');
       const now = Date.now();
       const elapsed = now - lastAnnounceTsRef.current;
       const shouldAnnounce = signature !== lastSpokenSignatureRef.current && elapsed > 3000;

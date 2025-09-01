@@ -8,15 +8,8 @@ import { BoundingBoxes } from './components/BoundingBoxes';
 import { useCamera } from './hooks/useCamera';
 import { useDetection } from './hooks/useDetection';
 import { useSpeech } from './hooks/useSpeech';
+import type { DetectionBox } from '@/types/detection';
 
-export type DetectionBox = {
-  id: string;
-  class: string;
-  score: number;
-  bbox: [number, number, number, number]; // [x, y, width, height] normalized 0..1
-  distance?: number; // estimated meters
-  position?: 'left' | 'center' | 'right';
-};
 
 
 export default function App() {

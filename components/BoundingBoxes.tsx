@@ -1,6 +1,6 @@
 import React from 'react';
 import { Svg, Rect, Text as SvgText } from 'react-native-svg';
-import type { DetectionBox } from '@/App';
+import type { DetectionBox } from '@/types/detection';
 
 export function BoundingBoxes({
   boxes,

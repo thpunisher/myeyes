@@ -1,6 +1,6 @@
 import * as Speech from 'expo-speech';
 import { useCallback, useRef } from 'react';
-import type { DetectionBox } from '@/App';
+import type { DetectionBox } from '@/types/detection';
 
 type SpeakContext = {
   reason: 'periodic' | 'voice_command';

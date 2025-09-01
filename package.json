@@ -13,28 +13,29 @@
     "postinstall": "npx expo-yarn-workspaces postinstall || true"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-voice/voice": "^3.2.2",
+    "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow/tfjs": "^4.21.0",
+    "@tensorflow/tfjs-react-native": "^1.0.0",
+    "base64-js": "^1.5.1",
     "expo": "^53.0.0",
+    "expo-build-properties": "^0.12.5",
     "expo-camera": "*",
     "expo-gl": "*",
     "expo-haptics": "*",
     "expo-speech": "*",
+    "nativewind": "^4.0.36",
     "react": "19.0.0",
     "react-native": "0.79.0",
-    "react-native-svg": "^15.2.0",
     "react-native-gesture-handler": "^2.17.1",
-    "@react-native-async-storage/async-storage": "^1.23.1",
-    "@tensorflow/tfjs": "^4.21.0",
-    "@tensorflow/tfjs-react-native": "^1.0.0",
-    "@tensorflow-models/coco-ssd": "^2.2.2",
-    "@react-native-voice/voice": "^3.2.2",
-    "nativewind": "^4.0.36",
-    "tailwindcss": "^3.4.10",
-    "base64-js": "^1.5.1",
-    "expo-build-properties": "^0.12.5"
+    "react-native-svg": "^15.2.0",
+    "tailwindcss": "^3.4.10"
   },
   "devDependencies": {
-    "typescript": "^5.5.4",
-    "babel-plugin-module-resolver": "^5.0.2"
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.2",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "typescript": "^5.5.4"
   }
 }
-
